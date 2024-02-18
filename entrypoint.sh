@@ -5,7 +5,18 @@ chown -R papercut:papercut /papercut
 chmod +x /papercut/server/bin/linux-x64/setperms
 /papercut/server/bin/linux-x64/setperms
 
-# Perform only if Papercut service exists and is executable.
+# Check if CUPS is running, start it if it isn't
+if ! pgrep -x "cupsd" > /dev/null
+then
+    echo "CUPS is not running, starting CUPS..."
+    service cups start
+else
+    echo "CUPS is already running."
+fi
+
+#Starts 
+
+# Perform only if PaperCut service exists and is executable.
 if [[ -x /etc/init.d/papercut ]]; then
 
     # set server config with env vars
@@ -14,10 +25,10 @@ if [[ -x /etc/init.d/papercut ]]; then
         runuser -p papercut -c "envsubst < /server.properties.template > /papercut/server/server.properties"
     fi
 
-    # database needs to initialized
+    # database needs to be initialized
     echo `runuser -l papercut -c "/papercut/server/bin/linux-x64/db-tools init-db -q"`
 
-    # If an import hasn't been done before and a database backup file name
+    # If an import hasn't been done before and a database backup file named
     # 'import.zip' exists, perform import.
     if [[ -f /papercut/import.zip ]] && [[ ! -f /papercut/import.log ]]; then
         echo `runuser -l papercut -c "/papercut/server/bin/linux-x64/db-tools import-db -q -f /papercut/import.zip"`
@@ -32,8 +43,8 @@ if [[ -x /etc/init.d/papercut ]]; then
     echo "Run license backup script in background"
     exec /backup-license.sh &
 
-    echo "Starting Papercut service in console"
+    echo "Starting PaperCut service in console"
     exec /etc/init.d/papercut console
 else
-    echo "Papercut service not found/executable, maybe the docker image/build got corrupted? Exiting..."
+    echo "PaperCut service not found/executable, maybe the docker image/build got corrupted? Exiting..."
 fi

@@ -1,5 +1,12 @@
-# docker-papercut-mf
-PaperCut MF for Docker 
+# docker-papercut-NG
+PaperCut NG for Docker 
+
+**Forked from [Stagei's Papercut-MF Docker Container](https://github.com/staegi/docker-papercut-mf)**
+This version has been tweaked slightly to:
+
+- Run papercut NG (for DIYers and home users) rather than MF. 
+- include a CUPS server so that you can configure your printers. You will need to modify your cupsd.conf file to enable that.
+- Add volume binds to ~/.papercut
 
 ## [Papercut MF](https://www.papercut.com/products/mf/)
 **[PLEASE AGREE TO PAPERCUT'S TOS BEFORE CONTINUING](https://www.papercut.com/products/ng/manual/common/topics/license.html)**
