@@ -26,7 +26,7 @@ if [[ -x /etc/init.d/papercut ]]; then
     fi
 
     # database needs to be initialized
-    echo `runuser -l papercut -c "/papercut/server/bin/linux-x64/db-tools init-db -q"`
+    echo `runuser -l papercut -c "/papercut/server/bin/linux-x64/db-tools init-db -q -f"`
 
     # If an import hasn't been done before and a database backup file named
     # 'import.zip' exists, perform import.
