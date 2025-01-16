@@ -29,8 +29,8 @@ RUN curl -L "${MYSQL_CONNECTOR_DOWNLOAD_URL}" -o /mysql.tar.gz && \
     rm /mysql.tar.gz
 
 # Install Papercut
-ENV PAPERCUT_MAJOR_VER 23.x
-ENV PAPERCUT_VER 23.0.6.68529
+ENV PAPERCUT_MAJOR_VER 24.x
+ENV PAPERCUT_VER 24.1.1.70969
 ENV PAPERCUT_DOWNLOAD_URL https://cdn1.papercut.com/web/products/ng-mf/installers/ng/${PAPERCUT_MAJOR_VER}/pcng-setup-${PAPERCUT_VER}.sh
 
 # Downloading Papercut and ensuring it's executable
