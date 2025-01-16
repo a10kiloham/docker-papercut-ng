@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:noble
 LABEL maintainer="Hamish Arnold h-arnold@github"
 LABEL description="PaperCut NG Application Server"
 
